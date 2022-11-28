@@ -13,6 +13,11 @@ flyway/info:
 	docker compose run --rm flyway $(FLYWAY_CONF) info
 flyway/baseline:
 	docker compose run --rm flyway $(FLYWAY_CONF) baseline
+flyway/migrate:
+	docker compose run --rm flyway $(FLYWAY_CONF) migrate
+
+psql:
+	docker compose exec db psql --username=$(DB_USER) --dbname=$(DB_NAME)
 
 postgresql/init:
 	docker compose exec db psql --username=$(DB_USER) --command="create database $(DB_NAME)"
