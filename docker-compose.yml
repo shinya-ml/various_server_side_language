@@ -1,6 +1,13 @@
 version: '3.8'
 
 services:
+  python:
+    build:
+      context: ./python
+    ports:
+      - 8000:8000
+    volumes:
+      - ./python/app:/app
   db:
     image: postgres:14.2-alpine
     command: postgres
