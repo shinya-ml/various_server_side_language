@@ -7,7 +7,7 @@ up:
 	docker compose up --build -d
 
 down:
-	docker compose down --volumes --remove-orphans
+	docker compose down --remove-orphans
 
 logs:
 	docker compose logs -f
