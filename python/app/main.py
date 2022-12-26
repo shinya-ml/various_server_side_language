@@ -1,12 +1,14 @@
 from fastapi import FastAPI
-import psycopg2
+import psycopg
 
 from model.user import UserRequest, UserResponse
-from handler.user import create
+from handler.user import UserHandler
+from repository.user import UserRepository
 
 app = FastAPI()
 
-conn = psycopg2.connect('')
+conn = psycopg.connect('')
+user_handler = UserHandler(UserRepository(conn))
 
 
 @app.get("/")
@@ -14,6 +16,6 @@ def read_root():
     return {"Hello": "World"}
 
 
-@app.post("/users", response_model=UserResponse)
+@app.post("/users")
 def create_user(user: UserRequest):
-    return create(user)
+    return user_handler.create(user)
