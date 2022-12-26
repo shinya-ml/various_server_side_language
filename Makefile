@@ -4,7 +4,10 @@ DB_PASSWORD=p@ssw0rd
 FLYWAY_CONF?=-url=jdbc:postgresql://db:5432/$(DB_NAME) -user=$(DB_USER) -password=$(DB_PASSWORD)
 
 up:
-	docker compose up -d
+	docker compose up --build -d
+
+down:
+	docker compose down --remove-orphans
 
 logs:
 	docker compose logs -f
