@@ -18,6 +18,16 @@ services:
     depends_on:
       db:
         condition: service_healthy
+  rust:
+    build:
+      context: ./rust
+    ports:
+      - 8001:8001
+    volumes:
+      - ./rust/app:/app
+    depends_on:
+      db:
+        condition: service_healthy
   db:
     image: postgres:14.2-alpine
     command: postgres
