@@ -6,6 +6,9 @@ FLYWAY_CONF?=-url=jdbc:postgresql://db:5432/$(DB_NAME) -user=$(DB_USER) -passwor
 up:
 	docker compose up --build -d
 
+rust/up:
+	docker compose up --build -d rust db flyway
+
 down:
 	docker compose down --remove-orphans
 
